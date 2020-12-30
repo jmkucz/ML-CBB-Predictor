@@ -9,7 +9,10 @@ if __name__ == "__main__":
 
     home_schedule = []
     away_schedule = []
-
+    """
+    Get the schedule and results for each home and away team so far,
+    and three other teams in each's conference for training
+    """
     soup = BeautifulSoup(f.text, 'html.parser')
     last = ""
     for x in soup.body.find_all("span", class_="TeamName"):
