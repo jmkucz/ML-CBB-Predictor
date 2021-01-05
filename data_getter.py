@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-if __name__ == "__main__":
+def data():
     link = "https://www.sports-reference.com/cbb/seasons/2021-school-stats.html"
     f = requests.get(link)
 
@@ -10,9 +10,7 @@ if __name__ == "__main__":
     last = ""
     for x in soup.body.find_all("td"):
         if x.string is not None:
-            w = x.string.replace(".", '1')
-            y = w.replace('-', '1').isdigit()
-            if not y:
+            if x.get("data-stat") == "school_name":
                 teams[x.string] = []
                 last = x.string
             else:
@@ -27,9 +25,7 @@ if __name__ == "__main__":
     skip = 0
     for x in soup2.body.find_all("td"):
         if x.string is not None:
-            w = x.string.replace(".", '1')
-            y = w.replace('-', '1').isdigit()
-            if not y:
+            if x.get("data-stat") == "school_name":
                 last = x.string
                 skip = 0
             elif skip > 14:
@@ -45,9 +41,7 @@ if __name__ == "__main__":
     skip = 0
     for x in soup3.body.find_all("td"):
         if x.string is not None:
-            w = x.string.replace(".", '1')
-            y = w.replace('-', '1').isdigit()
-            if not y:
+            if x.get("data-stat") == "school_name":
                 last = x.string
                 skip = 0
             elif skip > 14:
@@ -63,12 +57,11 @@ if __name__ == "__main__":
     skip = 0
     for x in soup4.body.find_all("td"):
         if x.string is not None:
-            w = x.string.replace(".", '1')
-            y = w.replace('-', '1').isdigit()
-            if not y:
+            if x.get("data-stat") == "school_name":
                 last = x.string
                 skip = 0
             elif skip > 15:
                 teams[last].append(x.string)
             skip = skip + 1
+    return teams
 
