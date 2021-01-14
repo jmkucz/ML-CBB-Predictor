@@ -16,7 +16,7 @@ def data():
                     teams[x.string] = []
                     last = x.string
                 elif count > 2:
-                    teams[last].append(x.string)
+                    teams[last].append(float(x.string))
                 else:
                     count = count + 1
     """
@@ -45,7 +45,7 @@ def data():
                 last = x.string
                 skip = 0
             elif skip > 14:
-                teams[last].append(x.string)
+                teams[last].append(float(x.string))
             skip = skip + 1
 
     link3 = "https://www.sports-reference.com/cbb/seasons/2021-advanced-school-stats.html"
@@ -61,7 +61,7 @@ def data():
                 last = x.string
                 skip = 0
             elif skip > 14:
-                teams[last].append(x.string)
+                teams[last].append(float(x.string))
             skip = skip + 1
 
     link4 = "https://www.sports-reference.com/cbb/seasons/2021-advanced-opponent-stats.html"
@@ -77,7 +77,7 @@ def data():
                 last = x.string
                 skip = 0
             elif skip > 15:
-                teams[last].append(x.string)
+                teams[last].append(float(x.string))
             skip = skip + 1
     return teams
 
